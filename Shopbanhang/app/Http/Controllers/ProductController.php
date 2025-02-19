@@ -15,33 +15,22 @@ class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
+     *
      */
 
      public function index(): View
      {
-         // Lấy danh sách danh mục từ cơ sở dữ liệu
          $categories = Category::all();
-     
-         // Lấy danh sách sản phẩm từ cơ sở dữ liệu, phân trang 6 sản phẩm mỗi trang
          $products = Product::latest()->paginate(6);
-     
-        //  $user = Auth::user();
-     
-        //  $orders = Order::where('email', $user->email)->latest()->paginate(6);
-     
-        //  $order_count = Order::where('email', $user->email);
-         
-        //      // Tính tổng số đơn hàng của người dùng
-        //      $cartCount = $order_count->count();
 
-        $cartCount = 0;
-         
-     
-         // Truyền cả products và categories vào View
+         // Lấy số lượng đơn hàng từ bảng `orders`
+         $cartCount = Order::count();
+
+
          return view('products.index', compact('products', 'categories', 'cartCount'));
      }
-     
+
+
 
     public function admin(): View
     {
@@ -60,7 +49,9 @@ public function buy($id)
     $product = Product::findOrFail($id);
 
     Order::create([
+        'product_id' => $product->id,
         'name' => $product->name,
+
         'price' => $product->price,
         'img' => $product->image,
         'order_time' => now(),
@@ -68,6 +59,22 @@ public function buy($id)
 
     return redirect()->route('orders.index')->with('success', 'Order placed successfully!');
 }
+
+public function buyAndRedirectToProducts($id)
+{
+    $product = Product::findOrFail($id);
+
+    Order::create([
+        'product_id' => $product->id,
+        'name' => $product->name,
+        'price' => $product->price,
+        'img' => $product->image,
+        'order_time' => now(),
+    ]);
+
+    return redirect()->route('products.index');
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -148,8 +155,7 @@ public function buy($id)
         return redirect()->route('products.admin')
                          ->with('success', 'Product deleted successfully.');
     }
-    /**
-     * Phần Category_id.
-     */
-    
+
+
+
 }

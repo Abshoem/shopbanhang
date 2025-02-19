@@ -23,10 +23,10 @@ class AuthMiddleware
 
         // Kiểm tra nếu là những route yêu cầu admin (ví dụ: route quản lý sản phẩm, đơn hàng)
         $adminRoutes = [
-            'orders.index', 
-            'categories.create', 
-            'categories.edit', 
-            'categories.showProducts', 
+
+            'categories.create',
+            'categories.edit',
+            'categories.showProducts',
             'categories.storeProduct',
             'categories.destroy',
             'categories.index', // Thêm route index của categories

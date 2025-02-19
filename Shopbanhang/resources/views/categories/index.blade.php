@@ -24,7 +24,7 @@
             <tr>
                 <th width="80px">No</th>
                 <th>Name</th>
-                <th>Image</th>
+                <!-- <th>Image</th> -->
                 <th>Actions</th>
             </tr>
         </thead>
@@ -34,9 +34,9 @@
             <tr>
                 <td>{{ $i++ }}</td>
                 <td>{{ $category->name }}</td>
-                <td>
+                <!-- <td>
                     <img src="{{ asset($category->image) }}" alt="{{ $category->name }}" width="50">
-                </td>
+                </td> -->
                 <td>
                     <!-- Nút xem sản phẩm của danh mục -->
                     <a href="{{ route('categories.showProducts', $category->id) }}" class="btn btn-primary btn-sm">View
@@ -87,8 +87,8 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Phone</th>
-                <th>Address</th>
+
+
                 <th>Email</th>
                 <th>Price</th>
                 <th>Order Time</th>
@@ -98,8 +98,8 @@
             @foreach($orders as $order)
             <tr>
                 <td>{{ $order->name }}</td>
-                <td>{{ $order->phone }}</td>
-                <td>{{ $order->address }}</td>
+
+
                 <td>{{ $order->email }}</td>
                 <td>${{ $order->price }}</td>
                 <td>{{ $order->order_time }}</td>

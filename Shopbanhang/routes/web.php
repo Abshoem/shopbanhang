@@ -15,15 +15,15 @@ use App\Http\Controllers\RateController;
 // });
 
 Route::get('/', [AuthController::class, 'index'])->name('login');
-Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
+Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
-Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
+Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::middleware([AuthMiddleware::class])->group(function () {
-    
-    
+
+
     Route::get('products/admin', [ProductController::class, 'admin'])->name('products.admin');
     Route::get('products/showdetail2/{id}', [ProductController::class, 'showdetail2'])->name('products.showdetail2');
     Route::get('products/{id}/buy', [ProductController::class, 'buy'])->name('products.buy');
@@ -35,8 +35,15 @@ Route::resource('products', ProductController::class);
         Route::resource('categories', CategoryController::class);
         Route::get('categories/{categoryId}/showProducts', [CategoryController::class, 'showProducts'])->name('categories.showProducts');
         Route::post('/categories/{categoryId}/products', [CategoryController::class, 'storeProduct'])->name('categories.storeProduct');
-        
+
     });
 
     Route::get('/user', [UserController::class, 'index']);
+
+    Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+
+    // chuc nang addtoCart
+    Route::get('products/{id}/buy-products', [ProductController::class, 'buyAndRedirectToProducts'])->name('products.buy.products');
+
+
 });
