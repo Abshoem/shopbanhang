@@ -39,11 +39,11 @@
                 </td> -->
                 <td>
                     <!-- Nút xem sản phẩm của danh mục -->
-                    <a href="{{ route('categories.showProducts', $category->id) }}" class="btn btn-primary btn-sm">View
+                    <a href="{{ route('categories.showProducts', $category->id) }}" class="btn btn-success btn-sm">View
                         Products</a>
 
                     <!-- Nút chỉnh sửa danh mục -->
-                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm">Edit</a>
 
                     <!-- Nút xóa danh mục -->
                     <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
@@ -55,7 +55,7 @@
                     </form>
 
                     <!-- Nút tạo sản phẩm mới cho danh mục này -->
-                    <a href="{{ route('categories.createProduct',  $category->id) }}" class="btn btn-info btn-sm">Create
+                    <a href="{{ route('categories.createProduct',  $category->id) }}" class="btn btn-outline-secondary btn-sm">Create
                         Product</a>
                 </td>
             </tr>
@@ -73,14 +73,7 @@
 <div class="container mt-5">
     <h1>Order List</h1>
 
-    <!-- Form tìm kiếm -->
-    <form method="GET" action="{{ route('categories.index') }}">
-        <div class="d-flex justify-content-between mb-3">
-            <input type="text" name="search" class="form-control" placeholder="Search by email or name"
-                value="{{ request('search') }}">
-            <button type="submit" class="btn btn-primary ms-2">Search</button>
-        </div>
-    </form>
+
 
     <!-- Bảng danh sách đơn hàng -->
     <table class="table table-bordered mt-3">

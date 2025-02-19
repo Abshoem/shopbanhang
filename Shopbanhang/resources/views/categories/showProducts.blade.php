@@ -25,15 +25,13 @@
         <table class="table table-bordered table-striped mt-4">
             <thead>
                 <tr>
-                    <th width="80px">No</th>
+                    <th width="80px">STT</th>
                     <th>Name</th>
                     <th>Details</th>
                     <th>Price</th>
                     <th>Image</th>
-                    <th>Size</th> <!-- Thêm cột Size -->
-                    <th>Material</th> <!-- Thêm cột Material -->
-                    <th>Frame</th> <!-- Thêm cột Frame -->
-                    <th>Condition</th> <!-- Thêm cột Condition -->
+
+
                     <th width="250px">Action</th>
                 </tr>
             </thead>
@@ -54,10 +52,7 @@
                         <span>No Image</span>
                         @endif
                     </td>
-                    <td>{{ $product->size }}</td> <!-- Hiển thị Size -->
-                    <td>{{ $product->material }}</td> <!-- Hiển thị Material -->
-                    <td>{{ $product->frame ? 'Yes' : 'No' }}</td> <!-- Hiển thị Frame (Yes/No) -->
-                    <td>{{ $product->condition }}</td> <!-- Hiển thị Condition -->
+
                     <td>
                         <form action="{{ route('products.destroy',$product->id) }}" method="POST">
 
@@ -70,7 +65,7 @@
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i>
+                            <button type="submit" class="btn btn-danger btn-sm">
                                 Delete</button>
                         </form>
                     </td>

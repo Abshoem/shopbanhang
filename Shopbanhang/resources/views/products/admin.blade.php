@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="card mt-5">
-    <h2 class="card-header">Laravel 11 CRUD Example from scratch - ItSolutionStuff.com</h2>
+    <h2 class="card-header">Chỉnh sửa sách</h2>
     <div class="card-body">
 
         @session('success')
@@ -44,16 +44,13 @@
                     <td>
                         <form action="{{ route('products.destroy',$product->id) }}" method="POST">
 
-                            <a class="btn btn-info btn-sm" href="{{ route('products.show',$product->id) }}"><i
-                                    class="fa-solid fa-list"></i> Show</a>
-
                             <a class="btn btn-primary btn-sm" href="{{ route('products.edit',$product->id) }}"><i
                                     class="fa-solid fa-pen-to-square"></i> Edit</a>
 
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i>
+                            <button type="submit" class="btn btn-danger btn-sm">
                                 Delete</button>
                         </form>
                     </td>
