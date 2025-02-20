@@ -28,7 +28,7 @@ class CategoryController extends Controller
                   ->orWhere('name', 'like', "%$search%"); // Tìm kiếm theo tên
         })
         ->latest() // Sắp xếp theo thời gian (mới nhất trước)
-        ->paginate(6); // Phân trang với 6 đơn hàng mỗi trang
+        ->paginate(9); // Phân trang với 6 đơn hàng mỗi trang
 
     // Lấy danh sách các danh mục
     $categories = Category::latest()->paginate(6); // Giả sử bạn có Category model
@@ -41,10 +41,10 @@ class CategoryController extends Controller
 {
     // Lấy danh mục theo ID
     $category = Category::findOrFail($categoryId);
-    
+
     // Lấy các sản phẩm thuộc danh mục này
-    $products = Product::where('category_id', $categoryId)->paginate(6);
-    
+    $products = Product::where('category_id', $categoryId)->paginate(9);
+
     return view('categories.showProducts', compact('category', 'products'));
 }
 
@@ -151,7 +151,7 @@ class CategoryController extends Controller
             'detail' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'price' => 'required|numeric|min:0',
-            
+
         ]);
 
         if ($request->hasFile('image')) {

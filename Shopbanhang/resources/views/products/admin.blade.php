@@ -10,9 +10,17 @@
         <div class="alert alert-success" role="alert"> {{ $value }} </div>
         @endsession
 
+        <!-- Nút quay lại trang danh mục -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+            <a class="btn btn-outline-secondary btn-sm" href="{{ route('categories.index') }}">
+                <i class="fa fa-arrow-left"></i> Quay lại danh sách
+            </a>
+        </div>
+
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-success btn-sm" href="{{ route('products.create') }}"> <i class="fa fa-plus"></i> Create
-                New Product</a>
+            <a class="btn btn-success btn-sm" href="{{ route('products.create') }}">
+                <i class="fa fa-plus"></i> Thêm sách mới
+            </a>
         </div>
 
         <table class="table table-bordered table-striped mt-4">
@@ -21,7 +29,7 @@
                     <th width="80px">No</th>
                     <th>Name</th>
                     <th>Details</th>
-                    <th>Price</th> <!-- Thêm cột Price -->
+                    <th>Price</th>
                     <th>Image</th>
                     <th width="250px">Action</th>
                 </tr>
@@ -33,7 +41,7 @@
                     <td>{{ ++$i }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->detail }}</td>
-                    <td>{{ $product->price }} </td> <!-- Hiển thị giá -->
+                    <td>{{ $product->price }} </td>
                     <td>
                         @if($product->image)
                         <img src="{{ asset($product->image) }}" alt="Product Image" class="img-thumbnail" width="100">
@@ -43,15 +51,12 @@
                     </td>
                     <td>
                         <form action="{{ route('products.destroy',$product->id) }}" method="POST">
-
-                            <a class="btn btn-primary btn-sm" href="{{ route('products.edit',$product->id) }}"><i
-                                    class="fa-solid fa-pen-to-square"></i> Edit</a>
-
+                            <a class="btn btn-primary btn-sm" href="{{ route('products.edit',$product->id) }}">
+                                <i class="fa-solid fa-pen-to-square"></i> Edit
+                            </a>
                             @csrf
                             @method('DELETE')
-
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -61,7 +66,6 @@
                 </tr>
                 @endforelse
             </tbody>
-
         </table>
 
         {!! $products->links() !!}

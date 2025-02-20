@@ -60,7 +60,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Update</button>
+            <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Cập nhật</button>
         </form>
 
     </div>

@@ -18,17 +18,25 @@ class ProductController extends Controller
      *
      */
 
-     public function index(): View
-     {
-         $categories = Category::all();
-         $products = Product::latest()->paginate(6);
+     public function index(Request $request): View
+{
+    $categories = Category::all();
+    $query = Product::query(); // Tạo truy vấn cơ bản
 
-         // Lấy số lượng đơn hàng từ bảng `orders`
-         $cartCount = Order::count();
+    // Kiểm tra nếu có từ khóa tìm kiếm
+    if ($request->has('search') && !empty($request->search)) {
+        $query->where('name', 'like', '%' . $request->search . '%');
+    }
 
+    // Lấy danh sách sản phẩm có phân trang
+    $products = $query->latest()->paginate(9);
 
-         return view('products.index', compact('products', 'categories', 'cartCount'));
-     }
+    // Lấy số lượng đơn hàng từ bảng `orders`
+    $cartCount = Order::count();
+
+    return view('products.index', compact('products', 'categories', 'cartCount'));
+}
+
 
 
 
@@ -51,7 +59,7 @@ public function buy($id)
     Order::create([
         'product_id' => $product->id,
         'name' => $product->name,
-
+        'user_id' => Auth::id(), // Lưu ID của khách hàng đang đăng nhập
         'price' => $product->price,
         'img' => $product->image,
         'order_time' => now(),

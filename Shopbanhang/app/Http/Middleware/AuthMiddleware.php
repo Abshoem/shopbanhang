@@ -29,8 +29,8 @@ class AuthMiddleware
             'categories.showProducts',
             'categories.storeProduct',
             'categories.destroy',
-            'categories.index', // Thêm route index của categories
-            'categories.update', // Thêm route update của categories
+            'categories.index',
+            'categories.update',
             'products.create',
             'products.edit',
             'rate.showByEmail'
